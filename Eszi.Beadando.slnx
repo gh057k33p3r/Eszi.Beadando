@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="eszi.beadando.client/eszi.beadando.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Eszi.Beadando.Server/Eszi.Beadando.Server.csproj" />
+</Solution>
