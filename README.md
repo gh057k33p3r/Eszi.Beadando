@@ -12,7 +12,7 @@ Visual Studio 2026 React and ASP.NET Core template-nek egy módosított változa
 ## 1. Követelmények
   - [Node.js LTS](https://nodejs.org/en/download/current)
   - [Git](https://git-scm.com/)
-  - [Visual Studio 2026](https://visualstudio.microsoft.com/downloads/)
+  - [Visual Studio 2026](https://visualstudio.microsoft.com/downloads/) ASP.NET and web development Workloaddal
   - [Visual Studio Code](https://code.visualstudio.com/download)
 
 ## 2. Klónozás
@@ -31,5 +31,5 @@ Visual Studio 2026 React and ASP.NET Core template-nek egy módosított változa
 Frontend
   - Visual Studio Code segítségével nyisd meg mappaként a "<mappa ahova klónoztad>Eszi.Beadando\eszi.beadando.client" mappát
   - Nyiss egy terminált, és futtass egy `npm install` -t (**package.json** alapján letölti a dependencyket amiket a **node_modules** mappában helyez el, illetve létrehozza a package-lock.json-t amiben befixálja a verziókat)
-  - Futtasd az `npm run dev` paranccsal futtasd (azért 'dev', mert a package.json-ban a scripts részben dev van
+  - Futtasd az `npm run dev` paranccsal futtasd (azért 'dev', mert a package.json-ban a scripts részben dev van)
   - Ha minden jól csináltál megnyílik a [http://localhost:3000](http://localhost:3000)
