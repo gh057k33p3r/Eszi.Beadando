@@ -1,4 +1,8 @@
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace Eszi.Beadando.Server
 {
     public class Program
@@ -13,6 +17,8 @@ namespace Eszi.Beadando.Server
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.AddCors();
+
             var app = builder.Build();
 
             app.UseDefaultFiles();
@@ -23,6 +29,15 @@ namespace Eszi.Beadando.Server
             {
                 app.MapOpenApi();
             }
+
+            app.UseCors(builder =>
+            {
+                builder
+                    .WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
 
             app.UseAuthorization();
 
