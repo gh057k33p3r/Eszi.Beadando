@@ -11,7 +11,7 @@ namespace Eszi.Beadando.Server.Middlewares
         {
             context.Request.Cookies.TryGetValue("accessToken", out string? accessToken);
 
-            if(string.Compare(context.Request.Path, "/auth/login", System.StringComparison.OrdinalIgnoreCase) >= 0 && !string.IsNullOrEmpty(accessToken))
+            if(string.Compare(context.Request.Path, "/auth/login", System.StringComparison.OrdinalIgnoreCase) != 0 && !string.IsNullOrEmpty(accessToken))
             {
                 context.Request.Headers.Authorization = $"Bearer {accessToken}";
             }

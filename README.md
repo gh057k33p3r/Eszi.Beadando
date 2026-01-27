@@ -8,6 +8,11 @@ Visual Studio 2026 React and ASP.NET Core template-nek egy módosított változa
 
   - Backend: .NET 10 Web Api
   - Fronted: React 19 + Typescript (Rolldown [vite](https://vite.dev/)-tal létrehozva)
+  
+ React libraryk:
+  - [axios](https://github.com/axios/axios)
+  - [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/installation)
+  - [React Router](https://reactrouter.com/)
 
 ## 1. Követelmények
   - [Node.js LTS](https://nodejs.org/en/download/current)

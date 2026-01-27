@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import type { Forecast } from "./types";
+import { axiosPrivate } from "./axios";
 
-interface Forecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
-
-function App() {
+export function App() {
   const [forecasts, setForecasts] = useState<Forecast[]>();
 
+  const getWeatherData = () =>
+    axiosPrivate.get<Forecast[]>("/weatherforecast").then((resp) => resp.data);
+
   useEffect(() => {
-    populateWeatherData();
+    getWeatherData().then(setForecasts);
   }, []);
 
   const contents =
@@ -56,14 +53,4 @@ function App() {
       {contents}
     </div>
   );
-
-  async function populateWeatherData() {
-    const response = await fetch("http://localhost:5000/weatherforecast");
-    if (response.ok) {
-      const data = await response.json();
-      setForecasts(data);
-    }
-  }
 }
-
-export default App;

@@ -10,6 +10,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Eszi.Beadando.Server.Controllers
 {
@@ -42,6 +43,22 @@ namespace Eszi.Beadando.Server.Controllers
             };
 
             HttpContext.Response.Cookies.Append("accessToken", accessToken, cookieOptions);
+
+            return Ok(accessToken);
+        }
+
+
+        [HttpGet("cookietoken")]
+        [Authorize]
+        public async Task<ActionResult<string>> GetTokenFromCookie()
+        {
+            // A kliens minden betöltésnél megnézi, hogy van-e a sütiben érvényes token tárolva. Mivel a süti HttpOnly, csak a backend képes olvasni belőle
+            Request.Cookies.TryGetValue("accessToken", out string? accessToken);
+
+            if(string.IsNullOrEmpty(accessToken))
+            {
+                return Unauthorized();
+            }
 
             return Ok(accessToken);
         }
