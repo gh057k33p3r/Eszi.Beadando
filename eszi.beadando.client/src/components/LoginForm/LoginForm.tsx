@@ -14,7 +14,7 @@ export function LoginForm() {
   });
 
   return (
-    <div>
+    <>
       <div>
         <input
           type="text"
@@ -48,6 +48,6 @@ export function LoginForm() {
           }}
         />
       </div>
-    </div>
+    </>
   );
 }

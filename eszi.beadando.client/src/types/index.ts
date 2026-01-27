@@ -4,3 +4,8 @@ export interface Forecast {
   temperatureF: number;
   summary: string;
 }
+
+export interface MenuItem {
+  label: string;
+  url: string;
+}

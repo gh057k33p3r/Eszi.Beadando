@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Forecast } from "./types";
 import { axiosPrivate } from "./axios";
 
-export function App() {
+export function WeatherForecasts() {
   const [forecasts, setForecasts] = useState<Forecast[]>();
 
   const getWeatherData = () =>
