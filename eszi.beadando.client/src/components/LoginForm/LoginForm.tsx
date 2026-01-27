@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { axiosPrivate } from "../../axios";
 
@@ -12,6 +12,8 @@ export function LoginForm() {
         .post("/auth/login", { email, password })
         .then((resp) => resp.data),
   });
+
+  const queryClient = useQueryClient();
 
   return (
     <>
@@ -42,9 +44,10 @@ export function LoginForm() {
         <input
           type="button"
           value="Belépés"
-          onClick={async () => {
-            await loginAsync();
-            window.location.reload();
+          onClick={() => {
+            loginAsync().then(() => {
+              queryClient.invalidateQueries();
+            });
           }}
         />
       </div>

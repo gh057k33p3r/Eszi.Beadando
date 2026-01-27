@@ -1,11 +1,21 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { axiosPrivate } from "../axios";
 
 export const useAccessToken = () => {
-  const queryClient = useQueryClient();
-
-  const accessToken = queryClient.getQueryData<string>(["cookietoken"]);
+  const { data: accessToken, isLoading } = useQuery({
+    queryKey: ["cookietoken"],
+    queryFn: async () => {
+      try {
+        var resp = await axiosPrivate.get<string>("/auth/cookietoken");
+        return resp.data;
+      } catch {
+        return null;
+      }
+    },
+  });
 
   return {
     accessToken,
+    isLoading,
   };
 };

@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosPrivate } from "../../axios";
 
 export function LogoutButton() {
@@ -7,13 +7,16 @@ export function LogoutButton() {
       axiosPrivate.post("/auth/logout").then((resp) => resp.data),
   });
 
+  const queryClient = useQueryClient();
+
   return (
     <input
       type="button"
       value="Kilépés"
       onClick={async () => {
-        await logoutAsync();
-        window.location.reload();
+        logoutAsync().then(() => {
+          queryClient.invalidateQueries();
+        });
       }}
     />
   );

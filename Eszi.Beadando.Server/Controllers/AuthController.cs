@@ -47,9 +47,8 @@ namespace Eszi.Beadando.Server.Controllers
             return Ok(accessToken);
         }
 
-
-        [HttpGet("cookietoken")]
         [Authorize]
+        [HttpGet("cookietoken")]
         public async Task<ActionResult<string>> GetTokenFromCookie()
         {
             // A kliens minden betöltésnél megnézi, hogy van-e a sütiben érvényes token tárolva. Mivel a süti HttpOnly, csak a backend képes olvasni belőle
@@ -63,8 +62,8 @@ namespace Eszi.Beadando.Server.Controllers
             return Ok(accessToken);
         }
 
-        [HttpPost("Logout")]
         [Authorize]
+        [HttpPost("Logout")]
         public ActionResult Logout()
         {
             HttpContext.Response.Cookies.Delete("accessToken");

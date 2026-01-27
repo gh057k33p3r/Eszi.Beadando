@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
 import type { Forecast } from "./types";
 import { axiosPrivate } from "./axios";
+import { useQuery } from "@tanstack/react-query";
 
 export function WeatherForecasts() {
-  const [forecasts, setForecasts] = useState<Forecast[]>();
-
-  const getWeatherData = () =>
-    axiosPrivate.get<Forecast[]>("/weatherforecast").then((resp) => resp.data);
-
-  useEffect(() => {
-    getWeatherData().then(setForecasts);
-  }, []);
+  const { data: forecasts } = useQuery({
+    queryKey: ["weatherforecast"],
+    queryFn: () =>
+      axiosPrivate
+        .get<Forecast[]>("/weatherforecast")
+        .then((resp) => resp.data),
+  });
 
   const contents =
     forecasts === undefined ? (

@@ -1,16 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { axiosPrivate } from "../../axios";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { LogoutButton } from "../LogoutButton/LogoutButton";
 import { Outlet } from "react-router";
 import { Menu } from "../Menu/Menu";
+import { useAccessToken } from "../../hooks/useAccessToken";
 
 export function Layout() {
-  const { data: accessToken, isLoading } = useQuery({
-    queryKey: ["cookietoken"],
-    queryFn: () =>
-      axiosPrivate.get<string>("/auth/cookietoken").then((resp) => resp.data),
-  });
+  const { accessToken, isLoading } = useAccessToken();
 
   return (
     <>
