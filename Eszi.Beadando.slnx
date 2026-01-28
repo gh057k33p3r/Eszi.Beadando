@@ -3,5 +3,6 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="Eszi.Beadando.Database/Eszi.Beadando.Database.csproj" Id="de4d19e9-42d5-4e94-8140-aab5e8725cf8" />
   <Project Path="Eszi.Beadando.Server/Eszi.Beadando.Server.csproj" />
 </Solution>

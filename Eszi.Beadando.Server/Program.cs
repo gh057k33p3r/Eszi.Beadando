@@ -1,6 +1,9 @@
 
+using Eszi.Beadando.Database;
 using Eszi.Beadando.Server.Middlewares;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -25,7 +28,14 @@ namespace Eszi.Beadando.Server
 
             builder.Services.AddCors();
 
+            builder.Services.AddDbContext<CoreDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString(nameof(CoreDbContext))));
+
             var app = builder.Build();
+
+            // Adatbázist migrálja automatikusan indításnál
+            using var scope = app.Services.CreateScope();
+            using var coreDbContext = scope.ServiceProvider.GetRequiredService<CoreDbContext>();
+            coreDbContext.Database.Migrate();
 
             if (app.Environment.IsDevelopment())
             {
